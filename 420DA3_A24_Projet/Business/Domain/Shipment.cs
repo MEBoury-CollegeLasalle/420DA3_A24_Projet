@@ -13,6 +13,16 @@ namespace _420DA3_A24_Projet.Business.Domain
 
         public const int TrackingNumberMaxLength = 32;
 
+
+
+
+        private int id;
+        private ShipmentStatusEnum status;
+        private ShippingProvidersEnum shippingService;
+        private int shippingOrderld;
+        private string trackingNumber;
+
+
         public int Id { get; set; }
         public ShipmentStatusEnum Status { get; set; }
         public ShippingProvidersEnum ShippingService { get; set; }
