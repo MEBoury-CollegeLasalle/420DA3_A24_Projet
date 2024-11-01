@@ -25,5 +25,6 @@ namespace _420DA3_A24_Projet.Business.Domain
         private User? fulfillerEmployee;
         private Adresse destinationAddress;
         // private List<ShippingOrderProduct> ShippingOrderProducts;
+
     }
 }
