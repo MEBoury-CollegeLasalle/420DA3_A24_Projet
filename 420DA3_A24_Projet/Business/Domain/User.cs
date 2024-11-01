@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _420DA3_A24_Projet.Business.Domain;
+﻿namespace _420DA3_A24_Projet.Business.Domain;
 public class User {
     public const int USERNAME_MIN_LENGTH = 4;
     public const int USERNAME_MAX_LENGTH = 64;
@@ -18,23 +12,23 @@ public class User {
     private string passwordHash = null!;
 
     // propriétés de données
-    public int Id { 
-        get { return this.id; } 
+    public int Id {
+        get { return this.id; }
         set {
             if (!ValidateId(value)) {
                 throw new ArgumentOutOfRangeException("Id", "Id must be greater than or equal to 0.");
             }
             this.id = value;
-        } 
+        }
     }
-    public string Username { 
-        get { return this.username; } 
+    public string Username {
+        get { return this.username; }
         set {
             if (!ValidateUsername(value)) {
                 throw new ArgumentOutOfRangeException("Username", $"Username length must be greater than or equal to {USERNAME_MIN_LENGTH} characters and lower than or equal to {USERNAME_MAX_LENGTH} characters.");
             }
             this.username = value;
-        } 
+        }
     }
     public string PasswordHash {
         get { return this.passwordHash; }
@@ -53,8 +47,8 @@ public class User {
 
     // Propriétés de navigation
     public virtual List<Role> Roles { get; set; } = new List<Role>();
-    //public virtual List<ShippingOrder> CreatedShippingOrders { get; set; } = new List<ShippingOrder>();
-    //public virtual List<ShippingOrder> FulfilledShippingOrders { get; set; } = new List<ShippingOrder>();
+    public virtual List<ShippingOrder> CreatedShippingOrders { get; set; } = new List<ShippingOrder>();
+    public virtual List<ShippingOrder> FulfilledShippingOrders { get; set; } = new List<ShippingOrder>();
     //public virtual Warehouse? EmployeeWarehouse { get; set; };
 
 
@@ -64,13 +58,13 @@ public class User {
         this.EmployeeWarehouseId = employeeWarehouseId;
     }
 
-    protected User(int id, 
-        string username, 
-        string passwordHash, 
-        int? employeeWarehouseId, 
-        DateTime dateCreated, 
-        DateTime? dateModified, 
-        DateTime? dateDeleted, 
+    protected User(int id,
+        string username,
+        string passwordHash,
+        int? employeeWarehouseId,
+        DateTime dateCreated,
+        DateTime? dateModified,
+        DateTime? dateDeleted,
         byte[] rowVersion)
         : this(username, passwordHash, employeeWarehouseId) {
 
@@ -87,7 +81,7 @@ public class User {
     }
 
     public static bool ValidateUsername(string username) {
-        return username.Length >= USERNAME_MIN_LENGTH 
+        return username.Length >= USERNAME_MIN_LENGTH
             && username.Length <= USERNAME_MAX_LENGTH;
     }
 
