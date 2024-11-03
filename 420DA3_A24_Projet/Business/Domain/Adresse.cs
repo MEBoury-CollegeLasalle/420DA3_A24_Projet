@@ -43,8 +43,8 @@ namespace _420DA3_A24_Projet.Business.Domain
         public DateTime DateCreated { get; set; }
         public DateTime? DateDelete { get; set; }
         public DateTime? DateModified { get; set; }
-        //public Warehouse? OwnerWarehouse { get; set; }
-        //public ShippingOrder? OwnerShipOrder {  get; set; } 
+        public Warehouse? OwnerWarehouse { get; set; }
+        public ShippingOrder? OwnerShipOrder {  get; set; } 
 
         public byte[] RowVersion { get; set; } = null!;
 
