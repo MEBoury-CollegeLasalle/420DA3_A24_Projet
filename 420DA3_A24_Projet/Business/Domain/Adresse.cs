@@ -13,14 +13,21 @@ namespace _420DA3_A24_Projet.Business.Domain
 
         public const int AdresseMaxLength = 64;
         public const int CivicNumberMaxLength = 6;
+        public const int CivicNumberMinLength = 1;
         public const int StreeMaxLength = 128;
+        public const int StreeMinLength = 2;
         public const int CityMaxLength = 64;
+        public const int CityMinLength = 3; 
         public const int StateMaxLength = 64;
+        public const int StateMinLength = 4;
         public const int ContryMaxLength = 64;
+        public const int ContryMinLength = 4;
         public const int PostalCodeMaxLength = 12;
+        public const int PostalCodeMinLength = 6;
 
         private int id;
-        private string adressTypes;
+        //private AddressTypesEnum addressType;
+        //private string adress;
         private string civicNumber;
         private string street;
         private string city;
@@ -31,15 +38,110 @@ namespace _420DA3_A24_Projet.Business.Domain
 
 
         //proprietes de donnees
-       public int Id { get; set; }
-       public  AddressTypesEnum AddressTypes { get; set; }
-        public string Adress { get; set; }
-        public string CivicNumber {  get; set; }
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Country { get; set; }
-        public string PostalCode { get; set; }
+       public int Id
+       {
+            get
+            {
+                return this.id;
+            }
+            set
+            {
+                if (!ValidateId(value))
+                {
+                    throw new ArgumentException("Id", $"Id must be greater than or equal to 0.");
+                }
+                this.id = value;
+            }
+       }
+       public  AddressTypesEnum AdressTypes 
+       { get; set; }
+        public string Adress 
+        { get; set; }
+        public string CivicNumber 
+        {
+            get {  return this.civicNumber; } 
+            set 
+            {
+                if (!ValidateCivicNumber(value))
+                {
+                    throw new ArgumentOutOfRangeException("CivicNumber", $"CivicNumber length must be greater than or equal to {CivicNumberMinLength} characters and lower than or equal to {CivicNumberMaxLength} characters.");
+                }
+                this.civicNumber = value;
+            }
+                              
+        }
+        public string Street 
+        {
+            get
+            {
+                return this.street;
+            }
+            set
+            {
+                if (ValidateStreet(value))
+                {
+                    throw new ArgumentOutOfRangeException("Street", $"Street length must be greater than or equal to {StreeMinLength} characters and lower than or equal to {StreeMaxLength} characters.");
+                }
+                this.street = value;
+            }
+        }
+        public string City
+        {
+            get
+            {
+                return this.city;
+            }
+            set
+            {
+                if (ValidateCity(value))
+                {
+                    throw new ArgumentOutOfRangeException("City", $"City length must be greater than or equal to {CityMinLength} characters and lower than or equal to {CityMinLength} characters.");
+                }
+                this.city = value;
+            }
+        }
+        public string State 
+        {
+            get
+            {
+                return this.state;
+            }
+            set
+            {
+                if (!ValidateState(value))
+                {
+                    throw new ArgumentOutOfRangeException("State", $"State length must be greater than or equal to {StateMinLength} characters and lower than or equal to {StateMaxLength} characters.");
+                }
+                this.state = value;
+            }
+        }
+        public string Country 
+        {
+            get
+            {
+                return this.country;
+            }
+            set
+            {
+                if (!ValidateContry(value))
+                {
+                    throw new ArgumentOutOfRangeException("Country", $"Country length must be greater than or equal to {ContryMinLength} characters and lower than or equal to {ContryMaxLength} characters.");
+
+                }
+            } 
+        }
+        public string PostalCode 
+        {
+            get { return this.postalCode; }
+            set
+            {
+                if (!ValidatePostalCode(value))
+                {
+                    throw new ArgumentOutOfRangeException("PostalCode", $"PostalCode length must be greater than or equal to {PostalCodeMinLength} characters and lower than or equal to {PostalCodeMaxLength} characters.");
+
+                }
+            }
+        }
         public DateTime DateCreated { get; set; }
         public DateTime? DateDelete { get; set; }
         public DateTime? DateModified { get; set; }
@@ -58,7 +160,7 @@ namespace _420DA3_A24_Projet.Business.Domain
             string country,
             string postalCode)
         {
-            this.AddressTypes= adressTypes;
+            this.AdressTypes= adressTypes;
             this.Adress = adresse;
             this.CivicNumber = civicNumber;
             this.Street = street;

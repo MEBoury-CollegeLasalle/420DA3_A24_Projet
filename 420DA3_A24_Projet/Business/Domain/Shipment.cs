@@ -12,22 +12,48 @@ namespace _420DA3_A24_Projet.Business.Domain
 
 
         public const int TrackingNumberMaxLength = 32;
+        public const int TrackingNumberMinLength = 1;
 
 
 
 
         private int id;
-        private ShipmentStatusEnum status;
-        private ShippingProvidersEnum shippingService;
-        private int shippingOrderld;
         private string trackingNumber;
 
 
-        public int Id { get; set; }
+        public int Id 
+        {
+
+            get
+            {
+                return this.id;
+            }
+            set
+            {
+                if (!ValidateId(value))
+                {
+                    throw new ArgumentException("Id", $"Id must be greater than or equal to 0.");
+                }
+                this.id = value;
+            }
+        }
         public ShipmentStatusEnum Status { get; set; }
         public ShippingProvidersEnum ShippingService { get; set; }
         public  int ShippingOrderld { get; set; }
-        public string TrackingNumber { get; set; }
+        public string TrackingNumber {
+            get
+            {
+                return this.trackingNumber;
+            }
+            set
+            {
+                if (!ValidateTrackingNumber(value)){
+                    throw new ArgumentOutOfRangeException("TrackingNumber", $"TrackingNumber length must be greater than or equal to {TrackingNumberMinLength} characters and lower than or equal to {TrackingNumberMaxLength} characters.");
+                }
+                this.trackingNumber = value;
+
+            }
+        }
         public DateTime  DateCreated { get; set; }
         public DateTime? DateDelete { get; set; }
         public DateTime? DateModified { get; set; }
