@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace _420DA3_A24_Projet.Business.Domain
 {
     /// <summary>
-    /// Classe représentant un odre de restockage de l'application.
+    /// Classe représentant un odre de restockage.
     /// </summary>
     public class PurchaseOrder
     {
