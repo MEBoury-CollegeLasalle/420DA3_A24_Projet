@@ -151,11 +151,15 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts
                 .HasColumnName("RowVersion")
                 .HasColumnOrder(6)
                 .IsRowVersion();
-            
+
             #endregion
 
             #region PURCHASEORDER
-
+            _ = modelBuilder.Entity<PurchaseOrder>()
+                .ToTable(nameof(this.PurchaseOrders))
+                .HasKey(purchaseOrder => purchaseOrder.Id);
+            _ = modelBuilder.Entity<PurchaseOrder>()
+                .HasIndex(purchaseOrder => purchaseOrder.)
             #endregion
             #region SUPPLIER
 

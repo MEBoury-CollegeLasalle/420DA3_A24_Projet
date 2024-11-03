@@ -86,6 +86,8 @@ public class User {
 
     #endregion
 
+
+
     /// <summary>
     /// Constructeur orienté création utilisateur
     /// </summary>
