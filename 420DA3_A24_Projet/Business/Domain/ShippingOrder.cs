@@ -9,6 +9,8 @@ namespace _420DA3_A24_Projet.Business.Domain
 {
     public class ShippingOrder
     {
+        // TODO: @CINDY Attention: avec EF, il faut utiliser des propriétés publiques.
+        // Là vous utilisez des champs privés. Faites attntion aussi à la casse (PascalCase pour propriétés publiques)
         private int id;
         private ShippingOrderStatusEnum status;
         private int sourceClientId;
@@ -20,6 +22,7 @@ namespace _420DA3_A24_Projet.Business.Domain
         private DateTime? dateModified;
         private DateTime? dateDeleted;
         // private Client sourceClient;
+        // TODO: @CINDY Les propriétés de navigation doivent être publiques et marquées 'virtual' pour permettre le lazy loading.
         private Shipment? shipment;
         private User creatorEmployee;
         private User? fulfillerEmployee;

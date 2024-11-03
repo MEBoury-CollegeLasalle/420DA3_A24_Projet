@@ -31,8 +31,8 @@ namespace _420DA3_A24_Projet.Business.Domain
 
 
         //proprietes de donnees
-       public int Id { get; set; }
-       public  AddressTypesEnum AddressTypes { get; set; }
+        public int Id { get; set; }
+        public  AddressTypesEnum AddressTypes { get; set; }
         public string Adress { get; set; }
         public string CivicNumber {  get; set; }
         public string Street { get; set; }

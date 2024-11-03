@@ -10,6 +10,8 @@ namespace _420DA3_A24_Projet.Business.Domain
 {
     public class PurchaseOrder
     {
+        // FIXME: @MAROUANE - Attention: avec EF Core, il faut utiliser des propriétés publiques.
+        // Là vous utilisez des champs privés. Faites attention aussi à la casse (PascalCase pour propriétés publiques)
         private int id;
         private PurchaseOrderStatusEnum status;
         private int productId;
@@ -34,7 +36,8 @@ namespace _420DA3_A24_Projet.Business.Domain
             this.warehouse = warehouse;
         }
 
-
+        // FIXME: @MAROUANE - Seules les propriétés de données doivent avoir des paramètres dans le constructeur.
+        // pas les propriétés de navigation (donc pas celles de type Product et Warehouse ici).
         protected PurchaseOrder(int id , PurchaseOrderStatusEnum status, int productId, int warehouseId,
             int quantity, Product orderedProduct, Warehouse warehouse , byte[] rowVersion, DateTime? completionDate,
             DateTime dateCreated, DateTime? dateModified, DateTime? dateDeleted)
