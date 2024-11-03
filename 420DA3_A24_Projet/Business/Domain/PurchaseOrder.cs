@@ -93,13 +93,6 @@ namespace _420DA3_A24_Projet.Business.Domain
 
 
 
-
-
-
-
-
-
-
         public static bool ValidateId(int id)
         {
             return id >= 0;
