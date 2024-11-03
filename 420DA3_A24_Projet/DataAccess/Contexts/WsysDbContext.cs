@@ -20,7 +20,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder
-                .UseSqlServer("")
+                .UseSqlServer("Server=.\\SQL2022DEV;Database=420DA3_A24_PROJET;Integrated Security=true;TrustServerCertificate=true;")
                 .UseLazyLoadingProxies();
 
         }
@@ -96,7 +96,62 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts
                 .WithMany(role => role.Users);
             #endregion
             #region ROLE
-
+            _ = modelBuilder.Entity<Role>()
+                .ToTable(nameof(this.Roles))
+                .HasKey(role => role.Id);
+            _ = modelBuilder.Entity<Role>()
+                .HasIndex(role => role.Name)
+                .IsUnique(true);
+            _ = modelBuilder.Entity<Role>()
+                .Property(role => role.Id)
+                .HasColumnName("Id")
+                .HasColumnOrder(0)
+                .HasColumnType("int")
+                .UseIdentityColumn(1, 1);
+            _ = modelBuilder.Entity<Role>()
+                .Property(role => role.Name)
+                .HasColumnName("Name")
+                .HasColumnOrder(1)
+                .HasColumnType($"nvarchar({Role.NAME_MAX_LENGTH})")
+                .HasMaxLength(Role.NAME_MAX_LENGTH)
+                .IsRequired(true);
+            _ = modelBuilder.Entity<Role>()
+                .Property(role => role.Description)
+                .HasColumnName("Description")
+                .HasColumnOrder(2)
+                .HasColumnType($"nvarchar({Role.DESCRIPTION_MAX_LENGTH})")
+                .HasMaxLength(Role.DESCRIPTION_MAX_LENGTH)
+                .IsRequired(false);
+            _ = modelBuilder.Entity<Role>()
+                .Property(role => role.DateCreated)
+                .HasColumnName("DateCreated")
+                .HasColumnOrder(3)
+                .HasColumnType("datetime2)")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(true);
+            _ = modelBuilder.Entity<Role>()
+                .Property(role => role.DateModified)
+                .HasColumnName("DateModified")
+                .HasColumnOrder(4)
+                .HasColumnType("datetime2)")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(false);
+            _ = modelBuilder.Entity<Role>()
+                .Property(role => role.DateDeleted)
+                .HasColumnName("DateDeleted")
+                .HasColumnOrder(5)
+                .HasColumnType("datetime2)")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(false);
+            _ = modelBuilder.Entity<Role>()
+                .Property(role => role.RowVersion)
+                .HasColumnName("RowVersion")
+                .HasColumnOrder(6)
+                .IsRowVersion();
+            
             #endregion
 
             #region PURCHASEORDER
@@ -109,7 +164,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts
 
             #region Adresse
             //configuration minimaliste de l'entite Adresse
-           _= modelBuilder.Entity<Adresse>()
+            _ = modelBuilder.Entity<Adresse>()
                 .ToTable("Adresse")
                 .HasKey(adresse => adresse.Id);
 
