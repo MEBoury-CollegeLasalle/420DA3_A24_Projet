@@ -239,14 +239,99 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts
                .HasColumnOrder(7)
                .IsRowVersion();
 
-
-
-
-
             #endregion
 
+            #region Shipment
+
+            //configurationminimaliste de l'entites Shipment
+            _ = modelBuilder.Entity<Shipment>()
+                .ToTable("Shipment")
+                .HasKey(shipment => shipment.Id);
+
+            //configuration d'un index a contrainte unique pour shipment (TrackinNumber)
+            _ = modelBuilder.Entity<Shipment>()
+                .HasIndex(shipment => shipment.TrackingNumber)
+                .IsUnique(true);
+
+            _= modelBuilder.Entity<Shipment>()
+                .Property(shipment=> shipment.Id)
+                .HasColumnName("Id")
+                .HasColumnType("int")
+                .HasColumnOrder(0)
+                .UseIdentityColumn(1, 1);
+
+            _ = modelBuilder.Entity<Shipment>()
+                .Property(shipment => shipment.Status)
+                .HasColumnName("Satus")
+                .HasColumnOrder(1)
+                .IsRequired(true);
 
 
+            _ = modelBuilder.Entity<Shipment>()
+                .Property(shipment => shipment.ShippingService)
+                .HasColumnName("ShippingService")
+                .HasColumnType("ShippingProvidersEnum")
+                .HasColumnOrder(2)
+                .IsRequired(true);
+
+            _ = modelBuilder.Entity<Shipment>()
+                .Property(shipment => shipment.ShippingOrderld)
+                .HasColumnName("ShippingOrderld")
+                .HasColumnType("int")
+                .HasColumnOrder(3)
+                .IsRequired(true);
+
+            _ = modelBuilder.Entity<Shipment>()
+                .Property(shipment => shipment.TrackingNumber)
+                .HasColumnName("TrackingNumber")
+                .HasColumnType("int")
+                .HasMaxLength(Shipment.TrackingNumberMaxLength)
+                .HasColumnOrder(4);
+
+            _ = modelBuilder.Entity<Shipment>()
+              .Property(shipment => shipment.DateCreated)
+              .HasColumnName("DateCreated")
+              .HasColumnOrder(5)
+              .HasColumnType("datetime2")
+              .HasPrecision(7)
+              .HasDefaultValue("GETDATE()")
+              .IsRequired(true);
+
+
+            _ = modelBuilder.Entity<Shipment>()
+                .Property(shipment => shipment.DateModified)
+                .HasColumnName("DateModified")
+                .HasColumnOrder(6)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(false);
+
+
+            _ = modelBuilder.Entity<Shipment>()
+                .Property(shipment => shipment.DateDelete)
+                .HasColumnName("DateDeleted")
+                .HasColumnOrder(7)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(false);
+
+
+            _ = modelBuilder.Entity<Shipment>()
+                .Property(shipment => shipment.ShippingOrder)
+                .HasColumnOrder(8)
+                .HasColumnType("ShippingOrder")
+                .HasPrecision(7)
+                .IsRequired(true);
+
+
+            _ = modelBuilder.Entity<User>()
+                .Property(shipment => shipment.RowVersion)
+                .HasColumnName("RowVersion")
+                .HasColumnOrder(9)
+                .IsRowVersion();
+            #endregion
 
 
 

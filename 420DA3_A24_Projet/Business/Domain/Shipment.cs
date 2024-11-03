@@ -17,8 +17,16 @@ namespace _420DA3_A24_Projet.Business.Domain
 
 
 
-        private int id;
-        private string trackingNumber;
+        private int id ;
+        private ShipmentStatusEnum status ;
+        private ShippingProvidersEnum shippingService ;
+        private int shippingOrderld ;
+        private string trackingNumber = null!;
+        private DateTime dateCreated;
+        private DateTime? dateDelete;
+        private DateTime? dateModified;
+        private ShippingOrder shippingOrder;
+
 
 
         public int Id 

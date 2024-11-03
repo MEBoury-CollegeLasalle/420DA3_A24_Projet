@@ -26,16 +26,19 @@ namespace _420DA3_A24_Projet.Business.Domain
         public const int PostalCodeMinLength = 6;
 
         private int id;
-        //private AddressTypesEnum addressType;
-        //private string adress;
+        private AddressTypesEnum addressType;
+        private string adress =null!;
         private string civicNumber=null!;
         private string street = null!;
         private string city = null!;
         private string state = null!;
         private string country = null!;
         private string postalCode =null!;
-
-
+        private DateTime dateCreated;
+        private DateTime? dateDelete;
+        private DateTime? dateModified;
+        private Warehouse? ownerWarehouse;
+        private ShippingOrder? ownerShipOrder;
 
         //proprietes de donnees
        public int Id
