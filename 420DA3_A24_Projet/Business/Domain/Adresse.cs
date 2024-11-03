@@ -28,12 +28,12 @@ namespace _420DA3_A24_Projet.Business.Domain
         private int id;
         //private AddressTypesEnum addressType;
         //private string adress;
-        private string civicNumber;
-        private string street;
-        private string city;
-        private string state;
-        private string country;
-        private string postalCode;
+        private string civicNumber=null!;
+        private string street = null!;
+        private string city = null!;
+        private string state = null!;
+        private string country = null!;
+        private string postalCode =null!;
 
 
 
@@ -192,12 +192,22 @@ namespace _420DA3_A24_Projet.Business.Domain
             this.DateModified = dateModified;
             this.RowVersion = rowVersion;
         }
-
+        /// <summary>
+        /// fonction pour valider les id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static bool ValidateId(int id)
         {
             return id >= 0;
-        }
 
+
+        }
+        /// <summary>
+        /// fonction pour valider les civicNumber
+        /// </summary>
+        /// <param name="civicNumber"></param>
+        /// <returns></returns>
         public static bool ValidateCivicNumber(string civicNumber)
         {
             return civicNumber.Length <= CivicNumberMaxLength;

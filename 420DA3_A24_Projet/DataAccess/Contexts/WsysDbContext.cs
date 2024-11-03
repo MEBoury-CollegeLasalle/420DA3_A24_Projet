@@ -107,6 +107,148 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts
             #endregion
 
 
+            #region Adresse
+            //configuration minimaliste de l'entite Adresse
+           _= modelBuilder.Entity<Adresse>()
+                .ToTable("Adresse")
+                .HasKey(adresse => adresse.Id);
+
+
+            _= modelBuilder.Entity<Adresse>()
+                .Property(adresse => adresse.Id)
+                .HasColumnName("Id")
+                .HasColumnType("int")
+                .HasColumnOrder(0)
+                .UseIdentityColumn(1, 1);
+
+            
+
+           _= modelBuilder.Entity<Adresse>()
+                .Property(adresse => adresse.AdressTypes)
+                .HasColumnName("AdressTypes")          
+                .HasColumnOrder(1)
+                .IsRequired(true);
+
+
+            _ = modelBuilder.Entity<Adresse>()
+                .Property(adresse => adresse.Adress)
+                .HasColumnName("Adress")
+                .HasColumnType($"nvarchar({Adresse.AdresseMaxLength})")
+                .HasMaxLength(Adresse.AdresseMaxLength)
+                .HasColumnOrder(2)
+                .IsRequired(true);
+
+
+            _= modelBuilder.Entity<Adresse>()
+                .Property(adresse => adresse.CivicNumber)
+                .HasColumnName("CivicNumber")
+                .HasColumnType($"int({Adresse.CivicNumberMaxLength})")
+                .HasMaxLength(Adresse.CivicNumberMaxLength)
+                .HasColumnOrder(3)
+                .IsRequired(true);
+
+            _= modelBuilder.Entity<Adresse>()
+                .Property(adresse => adresse.Street)
+                .HasColumnName("Street")
+                .HasColumnType($"nvarchar({Adresse.StreeMaxLength})")
+                .HasMaxLength(Adresse.StreeMaxLength)
+                .HasColumnOrder (4)
+                .IsRequired (true);
+
+            _= modelBuilder.Entity<Adresse>()
+                .Property(adresse=> adresse.City)
+                .HasColumnName("City")
+                .HasColumnType($"nvarchar({Adresse.CityMaxLength})")
+                .HasMaxLength(Adresse.CityMaxLength)
+                .HasColumnOrder(5)
+                .IsRequired(true);
+
+
+
+            _ = modelBuilder.Entity<Adresse>()
+                .Property(adresse => adresse.State)
+                .HasColumnName("State")
+                .HasColumnType($"nvarchar({Adresse.StateMaxLength})")
+                .HasMaxLength(Adresse.StateMaxLength)
+                .HasColumnOrder(6)
+                .IsRequired(true);
+
+
+            _= modelBuilder.Entity<Adresse>()
+                .Property(adresse=> adresse.Country)
+                .HasColumnName("Country")
+                .HasColumnType($"nvarchar({Adresse.ContryMaxLength})")
+                .HasMaxLength(Adresse.ContryMaxLength)
+                .HasColumnOrder(7)
+                .IsRequired(true);
+
+
+            _=modelBuilder.Entity<Adresse>()
+                .Property(adresse => adresse.PostalCode)
+                .HasColumnName("PostalCode")
+                .HasColumnType($"nvarchar({Adresse.PostalCodeMaxLength})")
+                .HasColumnOrder(8)
+                .IsRequired(true);
+
+
+            _=modelBuilder.Entity<Adresse>()
+                .Property(adresse => adresse.DateCreated)
+                .HasColumnName("DateCreated")
+                .HasColumnOrder(9)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(true);
+
+            _= modelBuilder.Entity<Adresse>()
+                .Property(adresse => adresse.DateDelete)
+                .HasColumnName("DateDeleted")
+                .HasColumnOrder(10)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(false);
+
+            _= modelBuilder.Entity<Adresse>()
+                .Property(adresse=> adresse.DateModified)
+                .HasColumnName("DateModified")
+                .HasColumnOrder(11)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(false);
+
+            _ = modelBuilder.Entity<Adresse>()
+                .Property(adresse => adresse.OwnerWarehouse)
+                .HasColumnName("OwnerWarehouse")
+                .HasColumnOrder(12)
+                .HasColumnType("Warehouse")
+                .IsRequired(false);
+
+            _ = modelBuilder.Entity<Adresse>()
+                .Property(adresse => adresse.OwnerShipOrder)
+                .HasColumnName("OwnerShipOrder")
+                .HasColumnType("ShippingOrder")
+                .HasColumnOrder(13)
+                .IsRequired();
+                
+
+            _ = modelBuilder.Entity<Adresse>()
+               .Property(adresse => adresse.RowVersion)
+               .HasColumnName("RowVersion")
+               .HasColumnOrder(7)
+               .IsRowVersion();
+
+
+
+
+
+            #endregion
+
+
+
+
+
 
         }
     }
