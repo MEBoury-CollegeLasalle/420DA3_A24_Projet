@@ -60,13 +60,13 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts
                 .Property(user => user.EmployeeWarehouseId)
                 .HasColumnName("EmployeeWarehouseId")
                 .HasColumnOrder(3)
-                .HasColumnType("int)")
+                .HasColumnType("int")
                 .IsRequired(false);
             _ = modelBuilder.Entity<User>()
                 .Property(user => user.DateCreated)
                 .HasColumnName("DateCreated")
                 .HasColumnOrder(4)
-                .HasColumnType("datetime2)")
+                .HasColumnType("datetime2")
                 .HasPrecision(7)
                 .HasDefaultValue("GETDATE()")
                 .IsRequired(true);
@@ -74,7 +74,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts
                 .Property(user => user.DateModified)
                 .HasColumnName("DateModified")
                 .HasColumnOrder(5)
-                .HasColumnType("datetime2)")
+                .HasColumnType("datetime2")
                 .HasPrecision(7)
                 .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
@@ -82,7 +82,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts
                 .Property(user => user.DateDeleted)
                 .HasColumnName("DateDeleted")
                 .HasColumnOrder(6)
-                .HasColumnType("datetime2)")
+                .HasColumnType("datetime2")
                 .HasPrecision(7)
                 .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
@@ -159,9 +159,134 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts
                 .ToTable(nameof(this.PurchaseOrders))
                 .HasKey(purchaseOrder => purchaseOrder.Id);
             _ = modelBuilder.Entity<PurchaseOrder>()
-                .HasIndex(purchaseOrder => purchaseOrder.)
+                .Property(purchaseOrder => purchaseOrder.Id)
+                .HasColumnName("Id")
+                .HasColumnOrder(0)
+                .HasColumnType("int")
+                .UseIdentityColumn(1, 1);
+            _ = modelBuilder.Entity<PurchaseOrder>()
+                .Property(purchaseOrder => purchaseOrder.Status)
+                .HasColumnName("Status")
+                .HasColumnOrder(1)
+                .HasColumnType("nvarchar")
+                .IsRequired(true);
+            _ = modelBuilder.Entity<PurchaseOrder>()
+                .Property(purchaseOrder => purchaseOrder.ProductId)
+                .HasColumnName("ProductId")
+                .HasColumnOrder(2)
+                .HasColumnType("int")
+                .IsRequired(true);
+            _ = modelBuilder.Entity<PurchaseOrder>()
+                .Property(purchaseOrder => purchaseOrder.WarehouseId)
+                .HasColumnName("WarehouseId")
+                .HasColumnOrder(3)
+                .HasColumnType("int")
+                .IsRequired(true);
+            _ = modelBuilder.Entity<PurchaseOrder>()
+                .Property(purchaseOrder => purchaseOrder.Quantity)
+                .HasColumnName("Quantity")
+                .HasColumnOrder(4)
+                .HasColumnType("int")
+                .IsRequired(true);
+            _ = modelBuilder.Entity<PurchaseOrder>()
+                .Property(purchaseOrder => purchaseOrder.CompletionDate)
+                .HasColumnName("CompletionDate")
+                .HasColumnOrder(5)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(false);
+            _ = modelBuilder.Entity<PurchaseOrder>()
+                .Property(purchaseOrder => purchaseOrder.DateCreated)
+                .HasColumnName("DateCreated")
+                .HasColumnOrder(6)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(true);
+            _ = modelBuilder.Entity<PurchaseOrder>()
+                .Property(purchaseOrder => purchaseOrder.DateModified)
+                .HasColumnName("DateModified")
+                .HasColumnOrder(7)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(false);
+
+
             #endregion
             #region SUPPLIER
+            _ = modelBuilder.Entity<Supplier>()
+                .ToTable(nameof(this.Suppliers))
+                .HasKey(supplier => supplier.Id);
+            _ = modelBuilder.Entity<Supplier>()
+                .HasIndex(supplier => supplier.SupplierName)
+                .IsUnique(true);
+            _ = modelBuilder.Entity<Supplier>()
+                .Property(supplier => supplier.Id)
+                .HasColumnName("Id")
+                .HasColumnOrder(0)
+                .HasColumnType("int")
+                .UseIdentityColumn(1, 1);
+            _ = modelBuilder.Entity<Supplier>()
+                .Property(supplier => supplier.SupplierName)
+                .HasColumnName("SupplierName")
+                .HasColumnOrder(1)
+                .HasColumnType($"nvarchar({Supplier.SUPPLIER_NAME_MAX_LENGTH})")
+                .HasMaxLength(Supplier.SUPPLIER_NAME_MAX_LENGTH)
+                .IsRequired(true);
+            _ = modelBuilder.Entity<Supplier>()
+                .Property(supplier => supplier.ContactLastName)
+                .HasColumnName("ContactLastName")
+                .HasColumnOrder(2)
+                .HasColumnType($"nvarchar({Supplier.CONTACT_LAST_NAME_MAX_LENGTH})")
+                .HasMaxLength(Supplier.CONTACT_LAST_NAME_MAX_LENGTH)
+                .IsRequired(true);
+            _ = modelBuilder.Entity<Supplier>()
+                .Property(supplier => supplier.ContactFirstName)
+                .HasColumnName("ContactFirstName")
+                .HasColumnOrder(3)
+                .HasColumnType($"nvarchar({Supplier.CONTACT_FIRST_NAME_MAX_LENGTH})")
+                .HasMaxLength(Supplier.CONTACT_FIRST_NAME_MAX_LENGTH)
+                .IsRequired(true);
+            _ = modelBuilder.Entity<Supplier>()
+                .Property(supplier => supplier.ContactEmail)
+                .HasColumnName("ContactEmail")
+                .HasColumnOrder(4)
+                .HasColumnType($"nvarchar({Supplier.CONTACT_EMAIL_MAX_LENGTH})")
+                .HasMaxLength(Supplier.CONTACT_EMAIL_MAX_LENGTH)
+                .IsRequired(true);
+            _ = modelBuilder.Entity<Supplier>()
+                .Property(supplier => supplier.ContactTelephone)
+                .HasColumnName("ContactTelephone")
+                .HasColumnOrder(4)
+                .HasColumnType($"nvarchar({Supplier.CONTACT_TELEPHONE_MAX_LENGTH})")
+                .HasMaxLength(Supplier.CONTACT_TELEPHONE_MAX_LENGTH)
+                .IsRequired(true);
+            _ = modelBuilder.Entity<Supplier>()
+                .Property(supplier => supplier.DateCreated)
+                .HasColumnName("DateCreated")
+                .HasColumnOrder(4)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(true);
+            _ = modelBuilder.Entity<Supplier>()
+                .Property(supplier => supplier.DateModified)
+                .HasColumnName("DateModified")
+                .HasColumnOrder(5)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(false);
+            _ = modelBuilder.Entity<Supplier>()
+                .Property(supplier => supplier.DateDeleted)
+                .HasColumnName("DateDeleted")
+                .HasColumnOrder(6)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
+                .IsRequired(false);
 
             #endregion
 
