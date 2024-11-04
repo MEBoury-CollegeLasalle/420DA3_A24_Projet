@@ -104,6 +104,71 @@ internal class WsysDbContext : DbContext {
         #region ROLE
 
         // TODO: @PROF Faire config Role
+        _ = modelBuilder.Entity<Role>()
+            .ToTable(nameof(this.Roles))
+            .HasKey(role => role.Id);
+
+        _ = modelBuilder.Entity<Role>()
+            .HasIndex(role => role.Name)
+            .IsUnique(true);
+
+        _ = modelBuilder.Entity<Role>()
+            .Property(role => role.Id)
+            .HasColumnName("Id")
+            .HasColumnOrder(0)
+            .HasColumnType("int")
+            .UseIdentityColumn(1, 1);
+
+        _ = modelBuilder.Entity<Role>()
+            .Property(role => role.Name)
+            .HasColumnName("Name")
+            .HasColumnOrder(1)
+            .HasColumnType($"nvarchar({Role.NAME_MAX_LENGTH})")
+            .HasMaxLength(Role.NAME_MAX_LENGTH)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Role>()
+            .Property(role => role.Description)
+            .HasColumnName("Description")
+            .HasColumnOrder(2)
+            .HasColumnType($"nvarchar({Role.DESCRIPTION_MAX_LENGTH})")
+            .HasMaxLength(Role.DESCRIPTION_MAX_LENGTH)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Role>()
+            .Property(role => role.DateCreated)
+            .HasColumnName("DateCreated")
+            .HasColumnOrder(3)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .HasDefaultValueSql("GETDATE()")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Role>()
+            .Property(role => role.DateModified)
+            .HasColumnName("DateModified")
+            .HasColumnOrder(4)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Role>()
+            .Property(role => role.DateDeleted)
+            .HasColumnName("DateDeleted")
+            .HasColumnOrder(5)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Role>()
+            .Property(role => role.RowVersion)
+            .HasColumnName("RowVersion")
+            .HasColumnOrder(6)
+            .IsRowVersion();
+
+        _ = modelBuilder.Entity<Role>()
+            .HasMany(role => role.Users)
+            .WithMany(user => user.Roles);
 
         #endregion
 
