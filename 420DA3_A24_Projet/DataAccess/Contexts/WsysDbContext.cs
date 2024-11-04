@@ -241,6 +241,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts
 
             #endregion
 
+
             #region Shipment
 
             //configurationminimaliste de l'entites Shipment
