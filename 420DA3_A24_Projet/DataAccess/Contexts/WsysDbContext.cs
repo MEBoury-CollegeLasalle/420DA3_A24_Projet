@@ -292,6 +292,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts
 
 
 
+
             #region Adresse
             //configuration minimaliste de l'entite Adresse
             _ = modelBuilder.Entity<Adresse>()
