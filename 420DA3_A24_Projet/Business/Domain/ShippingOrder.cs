@@ -1,10 +1,6 @@
 ﻿using _420DA3_A24_Projet.Business.Domain.Pivots;
 using Project_Utilities.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Domain;
 
@@ -49,7 +45,7 @@ public class ShippingOrder {
     /// <summary>
     /// La liste des produits associés à l'ordre d'expédition.
     /// </summary>
-    public virtual List<ShippingOrderProduct> Products { get; set; } = new List<ShippingOrderProduct>();
+    public virtual List<ShippingOrderProduct> ShippingOrderProducts { get; set; } = new List<ShippingOrderProduct>();
 
 
     /// <summary>
@@ -80,11 +76,11 @@ public class ShippingOrder {
     /// <param name="dateModified">La date de dernière modification de l'ordre d'expédition.</param>
     /// <param name="dateDeleted">La date de suppression de l'ordre d'expédition.</param>
     /// <param name="rowVersion">Le numéro de version anti-concurrence de l'entrée dans la base de donnée.</param>
-    protected ShippingOrder(int id, 
-        ShippingOrderStatusEnum status, 
-        int sourceClientId, 
-        int creatorEmployeeId, 
-        int destinationAddressId, 
+    protected ShippingOrder(int id,
+        ShippingOrderStatusEnum status,
+        int sourceClientId,
+        int creatorEmployeeId,
+        int destinationAddressId,
         int? fulfillerEmployeeId,
         DateTime dateCreated,
         DateTime? dateModified,
@@ -132,7 +128,7 @@ public class ShippingOrder {
             throw new ArgumentException("Shipment must be in New status to be assigned to a shipping order.");
         }
         this.Shipment = shipment;
-        this.Status = ShippingOrderStatusEnum.PAckaged;
+        this.Status = ShippingOrderStatusEnum.Packaged;
     }
 
     /// <summary>
@@ -144,7 +140,7 @@ public class ShippingOrder {
     /// ou si le statut de l'expédition assignée n'est pas "New".
     /// </exception>
     public void MarkAsShipped() {
-        if (this.Status != ShippingOrderStatusEnum.PAckaged) {
+        if (this.Status != ShippingOrderStatusEnum.Packaged) {
             throw new InvalidOperationException("Shipping order must be in Packaged status to be marked as Shipped.");
         }
         if (this.Shipment == null) {
@@ -169,7 +165,7 @@ public class ShippingOrder {
             case ShippingOrderStatusEnum.Processing:
                 _ = sb.Append($"#{this.Id} ({this.Status} by {this.FulfillerEmployee?.Username}) - Client: #{this.SourceClient.Id} {this.SourceClient.ClientName}");
                 break;
-            case ShippingOrderStatusEnum.PAckaged:
+            case ShippingOrderStatusEnum.Packaged:
             case ShippingOrderStatusEnum.Shipped:
                 _ = sb.Append($"#{this.Id} ({this.Status} - Shipment: {this.Shipment?.TrackingNumber}) - Client: #{this.SourceClient.Id} {this.SourceClient.ClientName}");
                 break;
