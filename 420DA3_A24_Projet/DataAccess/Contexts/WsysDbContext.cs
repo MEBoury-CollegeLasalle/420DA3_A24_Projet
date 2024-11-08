@@ -13,7 +13,8 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder
+            _ = optionsBuilder
+                // TODO: éventuellement remplacer par un string construit sur les configurations de l'application (fichier App.config).
                 .UseSqlServer("Server=.\\SQL2022DEV;Database=420DA3_A24_PROJET;Integrated Security=true;TrustServerCertificate=true;")
                 .UseLazyLoadingProxies();
 
@@ -35,14 +36,14 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             _ = modelBuilder.Entity<User>()
                 .Property(user => user.Id)
-                .HasColumnName("Id")
+                .HasColumnName(nameof(User.Id))
                 .HasColumnOrder(0)
                 .HasColumnType("int")
                 .UseIdentityColumn(1, 1);
 
             _ = modelBuilder.Entity<User>()
                 .Property(user => user.Username)
-                .HasColumnName("Username")
+                .HasColumnName(nameof(User.Username))
                 .HasColumnOrder(1)
                 .HasColumnType($"nvarchar({User.USERNAME_MAX_LENGTH})")
                 .HasMaxLength(User.USERNAME_MAX_LENGTH)
@@ -50,7 +51,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             _ = modelBuilder.Entity<User>()
                 .Property(user => user.PasswordHash)
-                .HasColumnName("PasswordHash")
+                .HasColumnName(nameof(User.PasswordHash))
                 .HasColumnOrder(2)
                 .HasColumnType($"nvarchar({User.PASSWORDHASH_MAX_LENGTH})")
                 .HasMaxLength(User.PASSWORDHASH_MAX_LENGTH)
@@ -58,14 +59,14 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             _ = modelBuilder.Entity<User>()
                 .Property(user => user.EmployeeWarehouseId)
-                .HasColumnName("EmployeeWarehouseId")
+                .HasColumnName(nameof(User.EmployeeWarehouseId))
                 .HasColumnOrder(3)
                 .HasColumnType("int")
                 .IsRequired(false);
 
             _ = modelBuilder.Entity<User>()
                 .Property(user => user.DateCreated)
-                .HasColumnName("DateCreated")
+                .HasColumnName(nameof(User.DateCreated))
                 .HasColumnOrder(4)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
@@ -74,7 +75,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             _ = modelBuilder.Entity<User>()
                 .Property(user => user.DateModified)
-                .HasColumnName("DateModified")
+                .HasColumnName(nameof(User.DateModified))
                 .HasColumnOrder(5)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
@@ -82,7 +83,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             _ = modelBuilder.Entity<User>()
                 .Property(user => user.DateDeleted)
-                .HasColumnName("DateDeleted")
+                .HasColumnName(nameof(User.DateDeleted))
                 .HasColumnOrder(6)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
@@ -90,7 +91,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             _ = modelBuilder.Entity<User>()
                 .Property(user => user.RowVersion)
-                .HasColumnName("RowVersion")
+                .HasColumnName(nameof(User.RowVersion))
                 .HasColumnOrder(7)
                 .IsRowVersion();
 
@@ -120,7 +121,6 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             #region ROLE
 
-            // TODO: @PROF Faire config Role
             _ = modelBuilder.Entity<Role>()
                 .ToTable(nameof(this.Roles))
                 .HasKey(role => role.Id);
@@ -131,14 +131,14 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             _ = modelBuilder.Entity<Role>()
                 .Property(role => role.Id)
-                .HasColumnName("Id")
+                .HasColumnName(nameof(Role.Id))
                 .HasColumnOrder(0)
                 .HasColumnType("int")
                 .UseIdentityColumn(1, 1);
 
             _ = modelBuilder.Entity<Role>()
                 .Property(role => role.Name)
-                .HasColumnName("Name")
+                .HasColumnName(nameof(Role.Name))
                 .HasColumnOrder(1)
                 .HasColumnType($"nvarchar({Role.NAME_MAX_LENGTH})")
                 .HasMaxLength(Role.NAME_MAX_LENGTH)
@@ -146,7 +146,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             _ = modelBuilder.Entity<Role>()
                 .Property(role => role.Description)
-                .HasColumnName("Description")
+                .HasColumnName(nameof(Role.Description))
                 .HasColumnOrder(2)
                 .HasColumnType($"nvarchar({Role.DESCRIPTION_MAX_LENGTH})")
                 .HasMaxLength(Role.DESCRIPTION_MAX_LENGTH)
@@ -154,7 +154,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             _ = modelBuilder.Entity<Role>()
                 .Property(role => role.DateCreated)
-                .HasColumnName("DateCreated")
+                .HasColumnName(nameof(Role.DateCreated))
                 .HasColumnOrder(3)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
@@ -163,7 +163,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             _ = modelBuilder.Entity<Role>()
                 .Property(role => role.DateModified)
-                .HasColumnName("DateModified")
+                .HasColumnName(nameof(Role.DateModified))
                 .HasColumnOrder(4)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
@@ -171,7 +171,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             _ = modelBuilder.Entity<Role>()
                 .Property(role => role.DateDeleted)
-                .HasColumnName("DateDeleted")
+                .HasColumnName(nameof(Role.DateDeleted))
                 .HasColumnOrder(5)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
@@ -179,15 +179,15 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             _ = modelBuilder.Entity<Role>()
                 .Property(role => role.RowVersion)
-                .HasColumnName("RowVersion")
+                .HasColumnName(nameof(Role.RowVersion))
                 .HasColumnOrder(6)
                 .IsRowVersion();
 
 
             #endregion
 
-
             #region PURCHASEORDER
+
             _ = modelBuilder.Entity<PurchaseOrder>()
                 .ToTable(nameof(this.PurchaseOrders))
                 .HasKey(purchaseOrder => purchaseOrder.Id);
@@ -248,6 +248,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
 
             #endregion
+
             #region SUPPLIER
             _ = modelBuilder.Entity<Supplier>()
                 .ToTable(nameof(this.Suppliers))
@@ -322,8 +323,6 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .IsRequired(false);
 
             #endregion
-
-
 
             #region Adresse
             //configuration minimaliste de l'entite Adresse
@@ -459,7 +458,6 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
             #endregion
 
-
             #region Shipment
 
             //configurationminimaliste de l'entites Shipment
@@ -592,8 +590,8 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasDefaultValueSql("GETDATE()")
                 .IsRequired(true);
 
-            _= modelBuilder.Entity<Warehouse>()
-                .Property(warehouse=>warehouse.DateModified)
+            _ = modelBuilder.Entity<Warehouse>()
+                .Property(warehouse => warehouse.DateModified)
                 .HasColumnName("DateModified")
                 .HasColumnOrder(4)
                 .HasColumnType("datetime2")
@@ -631,9 +629,9 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
             User user2 = new User("UserOffice", "43C39F5E14573CCB5E176B9C701673C3F7031F85C711E9A1B00AB6E4802A7310:F4C024A35DB3B92F9D1AFD928E9D6D26:100000:SHA256") {
                 Id = 2
             };
-            // TODO: @PROF assigner une warehouse à user3 quand une warehouse sera ajoutée.
             User user3 = new User("UserWarehouse", "43C39F5E14573CCB5E176B9C701673C3F7031F85C711E9A1B00AB6E4802A7310:F4C024A35DB3B92F9D1AFD928E9D6D26:100000:SHA256") {
-                Id = 3
+                Id = 3,
+                EmployeeWarehouseId = 1
             };
             _ = modelBuilder.Entity<User>().HasData(user1, user2, user3);
 
