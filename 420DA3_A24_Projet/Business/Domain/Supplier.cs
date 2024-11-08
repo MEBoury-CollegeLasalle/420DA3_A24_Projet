@@ -165,11 +165,6 @@ namespace _420DA3_A24_Projet.Business.Domain
             :this(supplierName , contactLastName, contactFisrtName , contactEmail , contactTelephone)
         {
             this.Id = id;
-            this.SupplierName = supplierName;
-            this.ContactLastName = contactLastName;
-            this.ContactFirstName = contactFisrtName;
-            this.ContactEmail = contactEmail;
-            this.ContactTelephone = contactTelephone;
             this.DateCreated = dateCreated;
             this.DateModified = dateModified;
             this.DateDeleted = dateDeleted;
