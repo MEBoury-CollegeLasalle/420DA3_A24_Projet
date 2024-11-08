@@ -391,7 +391,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(9)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValue("GETDATE()")
+                .HasDefaultValueSql("GETDATE()")
                 .IsRequired(true);
 
             _ = modelBuilder.Entity<Adresse>()
@@ -400,7 +400,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(10)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValue("GETDATE()")
+                .HasDefaultValueSql("GETDATE()")
                 .IsRequired(false);
 
             _ = modelBuilder.Entity<Adresse>()
@@ -409,7 +409,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(11)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValue("GETDATE()")
+                .HasDefaultValueSql("GETDATE()")
                 .IsRequired(false);
 
             _ = modelBuilder.Entity<Adresse>()
@@ -489,7 +489,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
               .HasColumnOrder(5)
               .HasColumnType("datetime2")
               .HasPrecision(7)
-              .HasDefaultValue("GETDATE()")
+              .HasDefaultValueSql("GETDATE()")
               .IsRequired(true);
 
 
@@ -499,7 +499,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(6)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValue("GETDATE()")
+                .HasDefaultValueSql("GETDATE()")
                 .IsRequired(false);
 
 
@@ -509,7 +509,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(7)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValue("GETDATE()")
+                .HasDefaultValueSql("GETDATE()")
                 .IsRequired(false);
 
 
