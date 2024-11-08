@@ -206,7 +206,6 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(5)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
             _ = modelBuilder.Entity<PurchaseOrder>()
                 .Property(purchaseOrder => purchaseOrder.DateCreated)
@@ -222,7 +221,6 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(7)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
 
 
@@ -289,7 +287,6 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(5)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
             _ = modelBuilder.Entity<Supplier>()
                 .Property(supplier => supplier.DateDeleted)
@@ -297,7 +294,6 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(6)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
 
             #endregion
