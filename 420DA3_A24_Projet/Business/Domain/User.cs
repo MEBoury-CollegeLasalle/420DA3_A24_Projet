@@ -83,7 +83,7 @@ public class User {
     /// </summary>
     public virtual List<ShippingOrder> FulfilledShippingOrders { get; set; } = new List<ShippingOrder>();
     /// <summary>
-    /// TODO @PROF: documenter
+    /// L'entrepôt de travail de l'employé d'entrepôt ou <see langword="null"/> pour les autres utilisateurs.
     /// </summary>
     public virtual Warehouse? EmployeeWarehouse { get; set; }
 
