@@ -208,6 +208,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(5)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
             _ = modelBuilder.Entity<PurchaseOrder>()
                 .Property(purchaseOrder => purchaseOrder.DateCreated)
@@ -223,6 +224,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(7)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
 
 
@@ -289,6 +291,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(5)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
             _ = modelBuilder.Entity<Supplier>()
                 .Property(supplier => supplier.DateDeleted)
@@ -296,10 +299,10 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(6)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
+                .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
 
             #endregion
-
 
 
 
@@ -393,7 +396,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(9)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValueSql("GETDATE()")
+                .HasDefaultValue("GETDATE()")
                 .IsRequired(true);
 
             _ = modelBuilder.Entity<Adresse>()
@@ -402,7 +405,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(10)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValueSql("GETDATE()")
+                .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
 
             _ = modelBuilder.Entity<Adresse>()
@@ -411,7 +414,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(11)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValueSql("GETDATE()")
+                .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
 
             _ = modelBuilder.Entity<Adresse>()
@@ -491,7 +494,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
               .HasColumnOrder(5)
               .HasColumnType("datetime2")
               .HasPrecision(7)
-              .HasDefaultValueSql("GETDATE()")
+              .HasDefaultValue("GETDATE()")
               .IsRequired(true);
 
 
@@ -501,7 +504,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(6)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValueSql("GETDATE()")
+                .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
 
 
@@ -511,7 +514,7 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnOrder(7)
                 .HasColumnType("datetime2")
                 .HasPrecision(7)
-                .HasDefaultValueSql("GETDATE()")
+                .HasDefaultValue("GETDATE()")
                 .IsRequired(false);
 
 
@@ -528,6 +531,71 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
                 .HasColumnName("RowVersion")
                 .HasColumnOrder(9)
                 .IsRowVersion();
+            #endregion
+
+            #region Warehouse
+            _ = modelBuilder.Entity<Warehouse>()
+                .ToTable(nameof(this.Warehouses)).
+                HasKey(warehouse => warehouse.Id);
+
+            _ = modelBuilder.Entity<Warehouse>()
+                .HasIndex(warehouse => warehouse.Name)
+                .IsUnique(true);
+
+            _ = modelBuilder.Entity<Warehouse>()
+                .Property(warehouse => warehouse.Id)
+                .HasColumnName("Id")
+                .HasColumnOrder(0)
+                .HasColumnType("int").
+                UseIdentityColumn(1, 1);
+
+            _ = modelBuilder.Entity<Warehouse>()
+                .Property(warehouse => warehouse.Name)
+                .HasColumnName("Name")
+                .HasColumnOrder(1)
+                .HasColumnType($"nvarchar{Warehouse.WAREHOUSE_NAME_MAX_LENGTH}")
+                .HasMaxLength(Warehouse.WAREHOUSE_NAME_MAX_LENGTH)
+                .IsRequired(true);
+
+            _ = modelBuilder.Entity<Warehouse>()
+                .Property(warehouse => warehouse.AddressId)
+                .HasColumnName("AdresseId").
+                HasColumnOrder(2)
+                .HasColumnType("nvarchar")
+                .IsRequired(true);
+
+            _ = modelBuilder.Entity<Warehouse>()
+                .Property(warehouse => warehouse.DateCreated)
+                .HasColumnName("DateCreated")
+                .HasColumnOrder(3)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .HasDefaultValueSql("GETDATE()")
+                .IsRequired(true);
+
+            _= modelBuilder.Entity<Warehouse>()
+                .Property(warehouse=>warehouse.DateModified)
+                .HasColumnName("DateModified")
+                .HasColumnOrder(4)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .IsRequired(false);
+
+            _ = modelBuilder.Entity<Warehouse>()
+                 .Property(warehouse => warehouse.DateDeleted)
+                 .HasColumnName("DateDeleted")
+                 .HasColumnOrder(5)
+                 .HasColumnType("datetime2")
+                 .HasPrecision(7)
+                 .IsRequired(false);
+
+            _ = modelBuilder.Entity<Warehouse>()
+                .Property(warehouse => warehouse.RowVersion)
+                .HasColumnName("RowVersion")
+                .HasColumnOrder(6)
+                .IsRowVersion();
+
+
             #endregion
 
 
