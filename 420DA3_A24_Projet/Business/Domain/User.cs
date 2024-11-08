@@ -82,7 +82,10 @@ public class User {
     /// Liste des ordres d'expédition complétés par l'utilisateur (pour employés d'entrepôt).
     /// </summary>
     public virtual List<ShippingOrder> FulfilledShippingOrders { get; set; } = new List<ShippingOrder>();
-    //public virtual Warehouse? EmployeeWarehouse { get; set; };
+    /// <summary>
+    /// TODO @PROF: documenter
+    /// </summary>
+    public virtual Warehouse? EmployeeWarehouse { get; set; }
 
     #endregion
 
@@ -109,13 +112,13 @@ public class User {
     /// <param name="dateModified">La date de dernière modification de l'utilisateur dans la base de données.</param>
     /// <param name="dateDeleted">La date de suppression de l'utilisateur dans la base de données.</param>
     /// <param name="rowVersion">Le numéro de version anti-concurrence de l'entrée dans la base de donnée.</param>
-    protected User(int id, 
-        string username, 
-        string passwordHash, 
-        int? employeeWarehouseId, 
-        DateTime dateCreated, 
-        DateTime? dateModified, 
-        DateTime? dateDeleted, 
+    protected User(int id,
+        string username,
+        string passwordHash,
+        int? employeeWarehouseId,
+        DateTime dateCreated,
+        DateTime? dateModified,
+        DateTime? dateDeleted,
         byte[] rowVersion)
         : this(username, passwordHash, employeeWarehouseId) {
 
