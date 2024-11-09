@@ -597,7 +597,92 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
 
 
             #endregion
+            #region ShippingOrderProduct
+            _ = modelBuilder.Entity<ShippingOrder>()
+                .ToTable(nameof(this.ShippingOrders))
+                .HasKey(shippingOrder => shippingOrder.Id);
 
+            _ = modelBuilder.Entity<ShippingOrder>()
+                .Property(shippingOrder => shippingOrder.Id)
+                .HasColumnName("Id")
+                .HasColumnOrder(0)
+                .HasColumnType("int").
+                UseIdentityColumn(1, 1);
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+                .Property(shippingOrder => shippingOrder.Status)
+                .HasColumnName("Status")
+                .HasColumnOrder(1)
+                .HasColumnType("ShippingOrderStatusEnum")
+                .IsRequired(true);
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+                .Property(shippingOrder => shippingOrder.SourceClientId)
+                .HasColumnName("SourceClientId")
+                .HasColumnOrder(2)
+                .HasColumnType("int")
+                .IsRequired(true);
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+                 .Property(shippingOrder => shippingOrder.CreatorEmployeeId)
+                 .HasColumnName("CreatorEmployeeId")
+                                .HasColumnOrder(3)
+                                .HasColumnType("int")
+                                .IsRequired(true);
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+                                       .Property(shippingOrder => shippingOrder.DestinationAddressId)
+                                       .HasColumnName("DestinationAddressId")
+                                       .HasColumnOrder(4)
+                                       .HasColumnType("int")
+                                       .IsRequired(true);
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+               .Property(shippingOrder => shippingOrder.FulfillerEmployeeId)
+               .HasColumnName("FulfillerEmployeeId")
+               .HasColumnOrder(5)
+               .HasColumnType("int")
+               .IsRequired(true);
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+                           .Property(shippingOrder => shippingOrder.FulfillerEmployeeId)
+                           .HasColumnName("FulfillerEmployeeId")
+                           .HasColumnOrder(6)
+                           .HasColumnType("int")
+                           .IsRequired(true);
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+               .Property(shippingOrder => shippingOrder.DateCreated)
+               .HasColumnName("DateCreated")
+               .HasColumnOrder(7)
+               .HasColumnType("datetime2")
+               .HasPrecision(7)
+               .HasDefaultValueSql("GETDATE()")
+               .IsRequired(true);
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+                .Property(shippingOrder => shippingOrder.DateModified)
+                .HasColumnName("DateModified")
+                .HasColumnOrder(8)
+                .HasColumnType("datetime2")
+                .HasPrecision(7)
+                .IsRequired(false);
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+                 .Property(shippingOrder => shippingOrder.DateDeleted)
+                 .HasColumnName("DateDeleted")
+                 .HasColumnOrder(9)
+                 .HasColumnType("datetime2")
+                 .HasPrecision(7)
+                 .IsRequired(false);
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+                .Property(shippingOrder => shippingOrder.RowVersion)
+                .HasColumnName("RowVersion")
+                .HasColumnOrder(9)
+                .IsRowVersion();
+
+            #endregion
 
 
             #region RELATIONS RE DONNÉES DE TEST
