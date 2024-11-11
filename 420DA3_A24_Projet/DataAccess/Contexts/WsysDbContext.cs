@@ -352,6 +352,7 @@ internal class WsysDbContext : DbContext {
         #endregion
 
         #region PIVOT - SHIPPING_ORDER_PRODUCTS (PIVOT)
+
         _ = modelBuilder.Entity<ShippingOrderProduct>()
             .ToTable(nameof(this.ShippingOrderProducts))
             .HasKey(sop => new { sop.ShippingOderId, sop.ProductId });
@@ -383,7 +384,21 @@ internal class WsysDbContext : DbContext {
             .HasColumnOrder(3)
             .IsRowVersion();
 
-        // TODO: @PROF Faire config des relations pour ShippingOrderProduct.
+
+        // Relations un-à-plusieurs pour ShippingOrder à ShippingOrderProduct
+        // et pour Product à ShippingOrderProduct
+
+        _ = modelBuilder.Entity<ShippingOrderProduct>()
+            .HasOne(sop => sop.ShippingOrder)
+            .WithMany(so => so.ShippingOrderProducts)
+            .HasForeignKey(sop => sop.ShippingOderId)
+            .HasPrincipalKey(so => so.Id);
+
+        _ = modelBuilder.Entity<ShippingOrderProduct>()
+            .HasOne(sop => sop.Product)
+            .WithMany(product => product.OrgderProducts)
+            .HasForeignKey(sop => sop.ProductId)
+            .HasPrincipalKey(p => p.Id);
 
         #endregion
 
