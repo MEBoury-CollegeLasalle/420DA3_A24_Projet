@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _420DA3_A24_Projet.Business.Domain.Pivots;
+﻿namespace _420DA3_A24_Projet.Business.Domain.Pivots;
 
 /// <summary>
 /// Classe représentant les associations entre <see cref="ShippingOrder"/> et <see cref="Product"/>."/>.
@@ -17,13 +11,14 @@ public class ShippingOrderProduct {
 
     public int ShippingOderId { get; set; }
     public int ProductId { get; set; }
-    public int Quantity { 
-        get { return this.quantity; } 
-        set { if (!ValidateQuantity(value)) { 
+    public int Quantity {
+        get { return this.quantity; }
+        set {
+            if (!ValidateQuantity(value)) {
                 throw new ArgumentOutOfRangeException("Quantity", "Quantity must be greater than or equal to 1.");
             }
             this.quantity = value;
-        } 
+        }
     }
     public byte[] RowVersion { get; set; } = null!;
 
@@ -31,7 +26,7 @@ public class ShippingOrderProduct {
     /// L'ordre d'expédition associé.
     /// </summary>
     public virtual ShippingOrder ShippingOrder { get; set; } = null!;
-    public virtual Product Product { get; set; } = null!;
+    public virtual Produit Product { get; set; } = null!;
 
     /// <summary>
     /// Constructeur orienté création manuelle
@@ -74,7 +69,7 @@ public class ShippingOrderProduct {
     /// </summary>
     /// <returns>Un string décrivant l'association produit-ordre d'expédition.</returns>
     public override string ToString() {
-        return $"{this.Product.Name} (Qty: {this.Quantity})";
+        return $"{this.Product.nom_produit} (Qty: {this.Quantity})";
     }
 
 }

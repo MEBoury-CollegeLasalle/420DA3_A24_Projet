@@ -120,7 +120,7 @@ public class ShippingOrder {
     /// <param name="shipment">L'expédition à assigner.</param>
     /// <exception cref="InvalidOperationException">Si le statut de l'ordre d'expédition n'est pas "Processing".</exception>
     /// <exception cref="ArgumentException">Si le statut de l'expédition reçue n'est pas "New".</exception>
-    public void MarkAsPackaged(Shipment shipment) {
+    public void MarkAsPackaged(Expedition shipment) {
         if (this.Status != ShippingOrderStatusEnum.Processing) {
             throw new InvalidOperationException("Shipping order must be in Processing status to be marked as Packaged.");
         }
@@ -167,7 +167,7 @@ public class ShippingOrder {
                 break;
             case ShippingOrderStatusEnum.Packaged:
             case ShippingOrderStatusEnum.Shipped:
-                _ = sb.Append($"#{this.Id} ({this.Status} - Shipment: {this.Shipment?.TrackingNumber}) - Client: #{this.SourceClient.Id} {this.SourceClient.ClientName}");
+                _ = sb.Append($"#{this.Id} ({this.Status} - Shipment: {this.Shipment?.CodeSuivi}) - Client: #{this.SourceClient.Id} {this.SourceClient.ClientName}");
                 break;
             case ShippingOrderStatusEnum.New:
             case ShippingOrderStatusEnum.Unassigned:
