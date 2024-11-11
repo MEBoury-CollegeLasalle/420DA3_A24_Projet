@@ -33,7 +33,7 @@ public class ShippingOrder {
     /// <summary>
     /// L'adresse de destination finale de l'ordre d'expédition.
     /// </summary>
-    public virtual Address DestinationAddress { get; set; } = null!;
+    public virtual Adresse DestinationAddress { get; set; } = null!;
     /// <summary>
     /// L'employé d'entrepôt assigné à la complétion de l'ordre d'expédition.
     /// </summary>
@@ -41,7 +41,7 @@ public class ShippingOrder {
     /// <summary>
     /// L'expédition associée à l'ordre d'expédition.
     /// </summary>
-    public virtual Shipment? Shipment { get; set; }
+    public virtual Expedition? Shipment { get; set; }
     /// <summary>
     /// La liste des produits associés à l'ordre d'expédition.
     /// </summary>
