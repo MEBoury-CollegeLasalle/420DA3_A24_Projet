@@ -10,6 +10,10 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
         public DbSet<ShippingOrder> ShippingOrders { get; set; }
+
+        public DbSet<Adresse>Adresses { get; set; }
+        public DbSet<Shipment> Shipments { get; set; }
+
          
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             base.OnConfiguring(optionsBuilder);
