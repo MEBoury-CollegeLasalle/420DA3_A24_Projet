@@ -700,8 +700,36 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
             _ = modelBuilder.Entity<ShippingOrder>()
                 .Property(shippingOrder => shippingOrder.RowVersion)
                 .HasColumnName("RowVersion")
-                .HasColumnOrder(9)
+                .HasColumnOrder(10)
                 .IsRowVersion();
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+                .Property(shippingOrder => shippingOrder.Shipment)
+                .HasColumnName("Shipment")
+                .HasColumnOrder(11)
+                .HasColumnType("Shipment")
+                .IsRequired(false);
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+                .Property(shippingOrder => shippingOrder.CreatorEmployee)
+                .HasColumnName("CreatorEmployee")
+                .HasColumnType("User")
+                .HasColumnOrder(12)
+                .IsRequired();
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+                .Property(shippingOrder => shippingOrder.FulfillerEmployee)
+                .HasColumnName("FulfillerEmployee")
+                .HasColumnType("User")
+                .HasColumnOrder(13)
+                .IsRequired(false);
+
+            _ = modelBuilder.Entity<ShippingOrder>()
+               .Property(shippingOrder => shippingOrder.DestinationAddress)
+               .HasColumnName("DestinationAddress")
+               .HasColumnType("Adresse")
+               .HasColumnOrder(14)
+               .IsRequired();
 
             #endregion
 
@@ -776,3 +804,4 @@ namespace _420DA3_A24_Projet.DataAccess.Contexts {
         }
     }
 }
+
