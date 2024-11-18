@@ -1,4 +1,5 @@
-﻿using _420DA3_A24_Projet.DataAccess.Contexts;
+﻿using _420DA3_A24_Projet.Business.Services;
+using _420DA3_A24_Projet.DataAccess.Contexts;
 using _420DA3_A24_Projet.Presentation;
 using System;
 using System.Collections.Generic;
@@ -6,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _420DA3_A24_Projet.Business.Services;
+namespace _420DA3_A24_Projet.Business;
 internal class Application {
     private readonly WsysDbContext dbContext;
     private readonly MainMenu mainMenu;
-    
+
     public SupplierService SupplierService { get; private set; }
     public PurchaseOrderService PurchaseOrderService { get; private set; }
 
@@ -27,7 +28,7 @@ internal class Application {
         StringBuilder messageBuilder = new StringBuilder();
         Console.Error.WriteLine(ex.Message);
         _ = messageBuilder.Append(ex.Message);
-        while(ex.InnerException != null) {
+        while (ex.InnerException != null) {
             ex = ex.InnerException;
             Console.Error.WriteLine(ex.Message);
             _ = messageBuilder.Append(Environment.NewLine + "Caused By: " + ex.Message);
