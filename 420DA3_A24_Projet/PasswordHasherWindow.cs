@@ -8,13 +8,13 @@ public partial class PasswordHasherWindow : Form {
     }
 
     private void ConvertButton_Click(object sender, EventArgs e) {
-        PasswordService passwordService = PasswordService.GetInstance();
+        PasswordService passwordService = new PasswordService();
         string password = this.clearPasswordTextBox.Text;
         string hashedPassword = passwordService.HashPassword(password);
         this.phHashTextBox.Text = hashedPassword;
     }
 
     private void QuitButton_Click(object sender, EventArgs e) {
-        Application.Exit();
+        System.Windows.Forms.Application.Exit();
     }
 }

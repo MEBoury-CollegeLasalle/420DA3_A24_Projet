@@ -51,9 +51,11 @@ internal class PurchaseOrderDAO {
         return this.context.PurchaseOrders
             .Where(purchaseOrder => (
                     purchaseOrder.Id.ToString().Contains(criterion)
-                    || purchaseOrder.SupplierName.ToLower().Contains(criterion.ToLower())
+                    || purchaseOrder.OrderedProduct.Supplier.ContactFirstName.ToLower().Contains(criterion.ToLower())
+                    || purchaseOrder.OrderedProduct.Supplier.ContactLastName.ToLower().Contains(criterion.ToLower())
                   ) && (includeDeleted || purchaseOrder.DateDeleted == null))
-            .Include(purchaseOrder => purchaseOrder.Products)
+            .Include(purchaseOrder => purchaseOrder.OrderedProduct)
+                .ThenInclude(product => product.Supplier)
             .ToList();
     }
 

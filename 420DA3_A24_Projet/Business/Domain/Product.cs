@@ -72,7 +72,7 @@ public class Product {
 
     #region Propriétés de navigation
     public virtual Customer Owner { get; set; } = null!; // Client propriétaire du produit
-    public virtual Supplier Supplier { get; set; } = null!; // Fournisseur du produit
+    public virtual Supplier Supplier { get; set; } = null!; // Fournisseur du produit  
     #endregion
 
     /// <summary>
