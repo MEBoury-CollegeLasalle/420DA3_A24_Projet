@@ -31,7 +31,7 @@ public class PurchaseOrder {
 
 
     public virtual Produit OrderedProduct { get; set; } = null!;
-    public virtual Warehouse DestinationWarehouse { get; set; } = null!;
+    public virtual Entrepot DestinationWarehouse { get; set; } = null!;
 
 
     /// <summary>
@@ -88,6 +88,6 @@ public class PurchaseOrder {
     }
 
     public override string ToString() {
-        return $"#{this.Id} ({this.Status}) - {this.Quantity} x {this.OrderedProduct.nom_produit} - Destination: {this.DestinationWarehouse.WarehouseName}";
+        return $"#{this.Id} ({this.Status}) - {this.Quantity} x {this.OrderedProduct.nomproduit} - Destination: {this.DestinationWarehouse.nomEntrepot}";
     }
 }
