@@ -3,6 +3,7 @@ using _420DA3_A24_Projet.Business.Domain.Pivots;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project_Utilities.Enums;
+using System.Configuration;
 
 namespace _420DA3_A24_Projet.DataAccess.Contexts;
 internal class WsysDbContext : DbContext {
@@ -17,8 +18,11 @@ internal class WsysDbContext : DbContext {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
 
+        string connString = ConfigurationManager.ConnectionStrings["ProjectDatabase"]?.ConnectionString
+            ?? throw new Exception("No connection string found for key [ProjectDatabase].");
+
         _ = optionsBuilder
-            .UseSqlServer("") // TODO: Add connection string
+            .UseSqlServer(connString)
             .UseLazyLoadingProxies();
     }
 
