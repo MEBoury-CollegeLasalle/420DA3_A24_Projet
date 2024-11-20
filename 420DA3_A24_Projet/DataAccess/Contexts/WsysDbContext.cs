@@ -6,6 +6,10 @@ using Project_Utilities.Enums;
 using System.Configuration;
 
 namespace _420DA3_A24_Projet.DataAccess.Contexts;
+
+/// <summary>
+/// TODO: documentation
+/// </summary>
 internal class WsysDbContext : DbContext {
 
     public DbSet<User> Users { get; set; }
