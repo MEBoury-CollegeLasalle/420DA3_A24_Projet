@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using _420DA3_A24_Projet.Business;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
-public partial class RoleView : Form {
-    public RoleView() {
-        InitializeComponent();
+internal partial class RoleView : Form {
+
+    private WsysApplication app;
+    public RoleView(WsysApplication application) {
+        this.app = application;
+        this.InitializeComponent();
     }
 }

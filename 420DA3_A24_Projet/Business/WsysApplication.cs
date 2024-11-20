@@ -30,10 +30,10 @@ internal class WsysApplication {
     /// </summary>
     public WsysApplication() {
         this.context = new WsysDbContext();
-        this.UserService = new UserService();
-        this.RoleService = new RoleService();
-        this.ShippingOrderService = new ShippingOrderService();
-        this.PurchaseOrderService = new PurchaseOrderService();
+        this.UserService = new UserService(this, this.context);
+        this.RoleService = new RoleService(this, this.context);
+        this.ShippingOrderService = new ShippingOrderService(this, this.context);
+        this.PurchaseOrderService = new PurchaseOrderService(this, this.context);
 
         // TODO: @ÉQUIPE ajoutez la création de vos services ici
 
