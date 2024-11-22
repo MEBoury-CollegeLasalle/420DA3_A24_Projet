@@ -1,8 +1,11 @@
-﻿using Project_Utilities.Enums;
+﻿using _420DA3_A24_Projet.Business.Domain.Enums;
+using Project_Utilities.Enums;
+using System;
+
 namespace _420DA3_A24_Projet.Business.Domain;
 
 /// <summary>
-/// Classe représentant une adresse dans l'application.
+/// Classe représentant une adresse utilisée pour des livraisons ou des correspondances.
 /// </summary>
 public class Adresse {
     /// <summary>
@@ -13,7 +16,7 @@ public class Adresse {
     /// <summary>
     /// Type de l'adresse 
     /// </summary>
-    public AddressStatusEnum Status  { get; set; }
+    public AddressTypeEnum TypeAdresse { get; set; }
 
     /// <summary>
     /// Nom ou désignation du destinataire.
@@ -31,27 +34,27 @@ public class Adresse {
     public string Rue { get; set; } = string.Empty;
 
     /// <summary>
-    /// Ville où se situe l'adresse.
+    /// Ville associée à l'adresse.
     /// </summary>
     public string Ville { get; set; } = string.Empty;
 
     /// <summary>
-    /// Province ou région de l'adresse.
+    /// Province ou région associée à l'adresse.
     /// </summary>
     public string Province { get; set; } = string.Empty;
 
     /// <summary>
-    /// Pays associé à l'adresse.
+    /// Pays de l'adresse.
     /// </summary>
     public string Pays { get; set; } = string.Empty;
 
     /// <summary>
-    /// Code postal de l'adresse.
+    /// Code postal associé à l'adresse.
     /// </summary>
     public string CodePostal { get; set; } = string.Empty;
 
     /// <summary>
-    /// Date de création de l'entrée d'adresse.
+    /// Date de création de l'adresse.
     /// </summary>
     public DateTime DateCreation { get; set; } = DateTime.Now;
 
@@ -61,28 +64,18 @@ public class Adresse {
     public DateTime? DateModification { get; set; }
 
     /// <summary>
-    /// Date de suppression de l'adresse (soft delete).
+    /// Date de suppression de l'adresse
     /// </summary>
     public DateTime? DateSuppression { get; set; }
 
     /// <summary>
-    /// Numéro de version pour la gestion des conflits dans la base de données.
+    /// Met à jour les informations principales de l'adresse.
     /// </summary>
-    public byte[] RowVersion { get; set; } = null!;
-
-    /// <summary>
-    /// Liste des ordres d'expédition associés à l'adresse.
-    /// </summary>
-    public virtual List<ShippingOrder> ShippingOrders { get; set; } = new List<ShippingOrder>();
-
-    /// <summary>
-    /// Méthode pour mettre à jour les informations principales de l'adresse.
-    /// </summary>
-    /// <param name="rue">Rue.</param>
-    /// <param name="ville">Ville.</param>
-    /// <param name="province">Province ou région.</param>
-    /// <param name="pays">Pays.</param>
-    /// <param name="codePostal">Code postal.</param>
+    /// <param name="rue">Nouvelle rue.</param>
+    /// <param name="ville">Nouvelle ville.</param>
+    /// <param name="province">Nouvelle province.</param>
+    /// <param name="pays">Nouveau pays.</param>
+    /// <param name="codePostal">Nouveau code postal.</param>
     public void MettreAJourAdresse(string rue, string ville, string province, string pays, string codePostal) {
         Rue = rue;
         Ville = ville;
@@ -93,10 +86,17 @@ public class Adresse {
     }
 
     /// <summary>
-    /// Retourne une représentation textuelle de l'adresse.
+    /// Valide les propriétés obligatoires de l'adresse.
     /// </summary>
-    /// <returns>Un string décrivant l'adresse.</returns>
-    public override string ToString() {
-        return $"{NumeroCivique} {Rue}, {Ville}, {Province}, {Pays} - {CodePostal}";
+    public void ValiderAdresse() {
+        if (string.IsNullOrWhiteSpace(Destinataire)) {
+            throw new ArgumentException("Le destinataire est obligatoire.");
+        }
+        if (string.IsNullOrWhiteSpace(Rue) || string.IsNullOrWhiteSpace(Ville)) {
+            throw new ArgumentException("La rue et la ville sont obligatoires.");
+        }
+        if (string.IsNullOrWhiteSpace(CodePostal)) {
+            throw new ArgumentException("Le code postal est obligatoire.");
+        }
     }
 }

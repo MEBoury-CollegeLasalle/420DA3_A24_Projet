@@ -1,9 +1,10 @@
-﻿using Project_Utilities.Enums;
+﻿using _420DA3_A24_Projet.Business.Domain.Enums;
+using System;
 
 namespace _420DA3_A24_Projet.Business.Domain;
 
 /// <summary>
-/// Classe représentant une expédition dans l'application.
+/// Classe représentant une expédition liée à un ordre d'expédition.
 /// </summary>
 public class Expedition {
     /// <summary>
@@ -17,7 +18,7 @@ public class Expedition {
     public DeliveryServiceEnum ServiceLivraison { get; set; }
 
     /// <summary>
-    /// Code de suivi associé à l'expédition.
+    /// Code de suivi unique de l'expédition.
     /// </summary>
     public string CodeSuivi { get; set; } = string.Empty;
 
@@ -27,7 +28,7 @@ public class Expedition {
     public int OrdreExpeditionId { get; set; }
 
     /// <summary>
-    /// Ordre d'expédition associé.
+    /// Ordre d'expédition associé à cette expédition.
     /// </summary>
     public virtual ShippingOrder OrdreExpedition { get; set; } = null!;
 
@@ -42,20 +43,18 @@ public class Expedition {
     public DateTime? DateModification { get; set; }
 
     /// <summary>
-    /// Date de suppression de l'expédition (soft delete).
+    /// Date de suppression de l'expédition 
     /// </summary>
     public DateTime? DateSuppression { get; set; }
 
-    /// <summary>
-    /// Numéro de version pour la gestion des conflits dans la base de données.
-    /// </summary>
-    public byte[] RowVersion { get; set; } = null!;
+   
+    public Expedition() { }
 
     /// <summary>
-    /// Constructeur orienté création manuelle.
+    /// Constructeur orienté création d'expédition.
     /// </summary>
-    /// <param name="serviceLivraison">Service de livraison utilisé.</param>
-    /// <param name="codeSuivi">Code de suivi de l'expédition.</param>
+    /// <param name="serviceLivraison">Service de livraison.</param>
+    /// <param name="codeSuivi">Code de suivi.</param>
     /// <param name="ordreExpeditionId">Identifiant de l'ordre d'expédition associé.</param>
     public Expedition(DeliveryServiceEnum serviceLivraison, string codeSuivi, int ordreExpeditionId) {
         ServiceLivraison = serviceLivraison;
@@ -64,10 +63,11 @@ public class Expedition {
     }
 
     /// <summary>
-    /// Retourne une représentation textuelle de l'expédition.
+    /// Valide les propriétés obligatoires de l'expédition.
     /// </summary>
-    /// <returns>Un string décrivant l'expédition.</returns>
-    public override string ToString() {
-        return $"{ServiceLivraison} - Code Suivi: {CodeSuivi} - Créé le: {DateCreation}";
+    public void ValiderExpedition() {
+        if (string.IsNullOrWhiteSpace(CodeSuivi) || CodeSuivi.Length < 6) {
+            throw new ArgumentException("Le code de suivi doit contenir au moins 6 caractères.");
+        }
     }
 }
