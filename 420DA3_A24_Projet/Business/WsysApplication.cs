@@ -1,6 +1,8 @@
-﻿using _420DA3_A24_Projet.Business.Services;
+﻿using _420DA3_A24_Projet.Business.Domain;
+using _420DA3_A24_Projet.Business.Services;
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using _420DA3_A24_Projet.Presentation;
+using Microsoft.EntityFrameworkCore;
 
 namespace _420DA3_A24_Projet.Business;
 
@@ -18,6 +20,8 @@ internal class WsysApplication {
     public RoleService RoleService { get; private set; }
     public ShippingOrderService ShippingOrderService { get; private set; }
     public PurchaseOrderService PurchaseOrderService { get; private set; }
+    public DbSet<Adresse> Adresses { get; set; } = null!;
+    public DbSet<Expedition> Expeditions { get; set; } = null!;
 
     // TODO: @ÉQUIPE ajoutez des propriétés pour vos services ici
 
