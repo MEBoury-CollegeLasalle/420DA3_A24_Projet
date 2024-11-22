@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Domain;
 public class Produit {
+    internal readonly object Client;
+
     //Identifiant
     public int Id { get; set; }
 

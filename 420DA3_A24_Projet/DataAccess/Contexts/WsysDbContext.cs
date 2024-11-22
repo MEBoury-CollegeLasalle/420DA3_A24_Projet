@@ -14,6 +14,10 @@ internal class WsysDbContext : DbContext {
 
     public DbSet<User> Users { get; set; }
     public DbSet<Role> Roles { get; set; }
+
+    public DbSet<Fournisseur> Fournisseurs { get; set; }
+    public DbSet<Client> Clients { get; set; }
+
     public DbSet<ShippingOrder> ShippingOrders { get; set; }
     public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
     public DbSet<ShippingOrderProduct> ShippingOrderProducts { get; set; }
@@ -411,15 +415,191 @@ internal class WsysDbContext : DbContext {
         #endregion
 
         // TODO: @TOUTE_EQUIPE Faites la configuration de vos entités et de leur relations ici
+        #region FOURNISSEUR
+
+        _ = modelBuilder.Entity<Fournisseur>()
+            .ToTable(nameof(this.Fournisseurs))
+            .HasKey(fournisseur => fournisseur.Id);
+
+        _ = modelBuilder.Entity<Fournisseur>()
+            .Property(fournisseur => fournisseur.Id)
+            .HasColumnName(nameof(Fournisseur.Id))
+            .HasColumnOrder(0)
+            .HasColumnType("int")
+            .UseIdentityColumn(1, 1);
+
+        _ = modelBuilder.Entity<Fournisseur>()
+            .Property(fournisseur => fournisseur.Nom)
+            .HasColumnName(nameof(Fournisseur.Nom))
+            .HasColumnOrder(1)
+            .HasColumnType("nvarchar(100)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Fournisseur>()
+            .Property(fournisseur => fournisseur.NomContact)
+            .HasColumnName(nameof(Fournisseur.NomContact))
+            .HasColumnOrder(2)
+            .HasColumnType("nvarchar(50)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Fournisseur>()
+            .Property(fournisseur => fournisseur.PrenomContact)
+            .HasColumnName(nameof(Fournisseur.PrenomContact))
+            .HasColumnOrder(3)
+            .HasColumnType("nvarchar(50)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Fournisseur>()
+            .Property(fournisseur => fournisseur.CourrielContact)
+            .HasColumnName(nameof(Fournisseur.CourrielContact))
+            .HasColumnOrder(4)
+            .HasColumnType("nvarchar(100)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Fournisseur>()
+            .Property(fournisseur => fournisseur.TelephoneContact)
+            .HasColumnName(nameof(Fournisseur.TelephoneContact))
+            .HasColumnOrder(5)
+            .HasColumnType("nvarchar(15)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Fournisseur>()
+            .Property(fournisseur => fournisseur.DateCreation)
+            .HasColumnName(nameof(Fournisseur.DateCreation))
+            .HasColumnOrder(6)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .HasDefaultValueSql("GETDATE()")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Fournisseur>()
+            .Property(fournisseur => fournisseur.DateModification)
+            .HasColumnName(nameof(Fournisseur.DateModification))
+            .HasColumnOrder(7)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Fournisseur>()
+            .Property(fournisseur => fournisseur.DateSuppression)
+            .HasColumnName(nameof(Fournisseur.DateSuppression))
+            .HasColumnOrder(8)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Fournisseur>()
+            .HasMany(fournisseur => fournisseur.Produits)
+            .WithOne(produit => produit.fournisseur)
+            .HasForeignKey(produit => produit.fournisseur)
+            .IsRequired(true)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        #endregion
+
+        #region CLIENT
+
+        _ = modelBuilder.Entity<Client>()
+            .ToTable(nameof(this.Clients))
+            .HasKey(client => client.Id);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.Id)
+            .HasColumnName(nameof(Client.Id))
+            .HasColumnOrder(0)
+            .HasColumnType("int")
+            .UseIdentityColumn(1, 1);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.NomCompagnie)
+            .HasColumnName(nameof(Client.NomCompagnie))
+            .HasColumnOrder(1)
+            .HasColumnType("nvarchar(100)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.NomContact)
+            .HasColumnName(nameof(Client.NomContact))
+            .HasColumnOrder(2)
+            .HasColumnType("nvarchar(50)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.PrenomContact)
+            .HasColumnName(nameof(Client.PrenomContact))
+            .HasColumnOrder(3)
+            .HasColumnType("nvarchar(50)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.CourrielContact)
+            .HasColumnName(nameof(Client.CourrielContact))
+            .HasColumnOrder(4)
+            .HasColumnType("nvarchar(100)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.TelephoneContact)
+            .HasColumnName(nameof(Client.TelephoneContact))
+            .HasColumnOrder(5)
+            .HasColumnType("nvarchar(15)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.DateCreation)
+            .HasColumnName(nameof(Client.DateCreation))
+            .HasColumnOrder(6)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .HasDefaultValueSql("GETDATE()")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.DateModification)
+            .HasColumnName(nameof(Client.DateModification))
+            .HasColumnOrder(7)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.DateSuppression)
+            .HasColumnName(nameof(Client.DateSuppression))
+            .HasColumnOrder(8)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.EntrepotId)
+            .HasColumnName(nameof(Client.EntrepotId))
+            .HasColumnOrder(9)
+            .HasColumnType("int")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Client>()
+            .HasOne(client => client.Entrepot)
+            .WithMany(entrepot => entrepot.Client)
+            .HasForeignKey(client => client.EntrepotId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        _ = modelBuilder.Entity<Client>()
+            .HasMany(client => client.Produits)
+            .WithOne(produit => produit.Client)
+            .HasForeignKey(produit => produit.ClientId)
+            .IsRequired(true)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        #endregion
 
 
 
 
 
-
-        #region RELATIONS RE DONNÉES DE TEST
+        #region RELATIONS ET DONNÉES DE TEST
 
         // Warehouse ici
+
 
 
         // NOTE: le mot de passe des user est "testpasswd".
@@ -452,7 +632,7 @@ internal class WsysDbContext : DbContext {
             Id = Role.WAREHOUSE_EMPLOYEE_ROLE_ID
         };
         _ = modelBuilder.Entity<Role>()
-            .HasData(adminRole, officeEmployeesRole, whEmployeeRole);
+     .HasData(adminRole, officeEmployeesRole, whEmployeeRole);
 
 
         // NOTE: doit être placé après l'insertion de données pour User et pour Role
