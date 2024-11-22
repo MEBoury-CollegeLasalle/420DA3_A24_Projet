@@ -1,10 +1,8 @@
-﻿using _420DA3_A24_Projet.Business.Domain;
-using _420DA3_A24_Projet.Business.Services;
+﻿using _420DA3_A24_Projet.Business.Services;
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using _420DA3_A24_Projet.Presentation;
 using System.Diagnostics;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
 
 namespace _420DA3_A24_Projet.Business;
 
@@ -53,12 +51,18 @@ internal class WsysApplication {
         this.PasswordService = PasswordService.GetInstance();
         this.LoginService = new LoginService(this);
         this.adminMainMenu = new AdminMainMenu(this);
-        this.officeEmployeeMainMenu = new OfficeEmpMainMenu();
-        this.warehouseEmployeeMainMenu = new WhEmpMainMenu();
+        this.officeEmployeeMainMenu = new OfficeEmpMainMenu(this);
+        this.warehouseEmployeeMainMenu = new WhEmpMainMenu(this);
     }
 
 
-
+    /// <summary>
+    /// Démarre l'application.
+    /// </summary>
+    /// <remarks>
+    /// L'application est démarrée en boucle infinie. L'utilisateur doit se connecter pour accéder au menu principal.
+    /// </remarks>
+    /// <exception cref="Exception">En cas d'erreur insurmontable.</exception>
     public void Start() {
         Application.Run(); // UI event loop without a form.
         while (true) {
@@ -92,7 +96,13 @@ internal class WsysApplication {
     }
 
 
-
+    /// <summary>
+    /// Gestion générale d'une exception.
+    /// </summary>
+    /// <remarks>
+    /// Affiche les détails de l'exception dans la console, dans la fenêtre de débogage et dans une boîte de dialogue.
+    /// </remarks>
+    /// <param name="ex">L'exception à gérer.</param>
     public void HandleException(Exception ex) {
         string? stack = ex.StackTrace;
         StringBuilder messageBuilder = new StringBuilder();
