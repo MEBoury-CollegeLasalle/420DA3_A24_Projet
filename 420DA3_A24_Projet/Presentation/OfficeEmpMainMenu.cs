@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using _420DA3_A24_Projet.Business;
 
 namespace _420DA3_A24_Projet.Presentation;
-public partial class OfficeEmpMainMenu : Form {
-    public OfficeEmpMainMenu() {
-        InitializeComponent();
+internal partial class OfficeEmpMainMenu : Form {
+
+    private WsysApplication parentApp;
+    public OfficeEmpMainMenu(WsysApplication application) {
+        this.parentApp = application;
+        this.InitializeComponent();
+    }
+
+    public DialogResult ShowOfficeEmpMainMenu() {
+        return this.ShowDialog();
     }
 }

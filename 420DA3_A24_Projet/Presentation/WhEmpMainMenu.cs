@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using _420DA3_A24_Projet.Business;
 
 namespace _420DA3_A24_Projet.Presentation;
-public partial class WhEmpMainMenu : Form {
-    public WhEmpMainMenu() {
-        InitializeComponent();
+internal partial class WhEmpMainMenu : Form {
+
+    private WsysApplication parentApp;
+    public WhEmpMainMenu(WsysApplication application) {
+        this.parentApp = application;
+        this.InitializeComponent();
+    }
+
+    public DialogResult ShowWhEmpMainMenu() {
+        return this.ShowDialog();
     }
 }

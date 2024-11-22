@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using _420DA3_A24_Projet.Business;
 
 namespace _420DA3_A24_Projet.Presentation;
-public partial class AdminMainMenu : Form {
-    public AdminMainMenu() {
-        InitializeComponent();
+internal partial class AdminMainMenu : Form {
+
+    private WsysApplication parentApp;
+
+    public AdminMainMenu(WsysApplication application) {
+        this.parentApp = application;
+        this.InitializeComponent();
+    }
+
+    public DialogResult ShowAdminMainMenu() {
+        return this.ShowDialog();
     }
 }
