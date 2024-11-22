@@ -20,8 +20,9 @@ internal class WsysApplication {
     public RoleService RoleService { get; private set; }
     public ShippingOrderService ShippingOrderService { get; private set; }
     public PurchaseOrderService PurchaseOrderService { get; private set; }
-    public DbSet<Adresse> Adresses { get; set; } = null!;
-    public DbSet<Expedition> Expeditions { get; set; } = null!;
+    public AdresseService AdresseService { get; private set; }
+    public ExpeditionService ExpeditionService { get; private set; }
+
 
     // TODO: @ÉQUIPE ajoutez des propriétés pour vos services ici
 
@@ -38,6 +39,8 @@ internal class WsysApplication {
         this.RoleService = new RoleService(this, this.context);
         this.ShippingOrderService = new ShippingOrderService(this, this.context);
         this.PurchaseOrderService = new PurchaseOrderService(this, this.context);
+        this.AdresseService = new AdresseService(this, this.context);
+        this.ExpeditionService = new ExpeditionService(this, this.context);
 
         // TODO: @ÉQUIPE ajoutez la création de vos services ici
 
