@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Services;
 internal class PurchaseOrderService {
-    private readonly Application application;
+    private readonly ProjectApplication application;
     private readonly PurchaseOrderView view;
     private readonly PurchaseOrderDAO dao;
     
 
-    public PurchaseOrderService(Application app , WsysDbContext context) {
+    public PurchaseOrderService(ProjectApplication app , WsysDbContext context) {
         this.application = app;
         this.dao = new PurchaseOrderDAO(context);
         this.view = new PurchaseOrderView(app);

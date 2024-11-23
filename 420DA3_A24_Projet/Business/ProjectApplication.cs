@@ -8,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business;
-internal class Application {
+internal class ProjectApplication {
     private readonly WsysDbContext dbContext;
     private readonly MainMenu mainMenu;
 
     public SupplierService SupplierService { get; private set; }
     public PurchaseOrderService PurchaseOrderService { get; private set; }
 
-    public Application() {
+    public ProjectApplication() {
         ApplicationConfiguration.Initialize();
         this.dbContext = new WsysDbContext();
         this.SupplierService = new SupplierService(this, this.dbContext);
