@@ -1,4 +1,5 @@
-﻿using _420DA3_A24_Projet.Business.Domain;
+﻿using _420DA3_A24_Projet.Business;
+using _420DA3_A24_Projet.Business.Domain;
 using Project_Utilities.Enums;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
-public partial class PurchaseOrderView : Form {
+internal partial class PurchaseOrderView : Form {
 
-    private readonly Application application;
+    private readonly ProjectApplication application;
     private ViewActionsEnum currentAction;
     private PurchaseOrder? currentInstance;
-    public PurchaseOrderView(Application app) {
+    public PurchaseOrderView(ProjectApplication app) {
         this.application = app;
         this.currentAction = ViewActionsEnum.Visualization;
         this.InitializeComponent();
