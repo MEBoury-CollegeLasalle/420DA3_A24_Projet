@@ -15,11 +15,17 @@ internal class ProjectApplication {
     public SupplierService SupplierService { get; private set; }
     public PurchaseOrderService PurchaseOrderService { get; private set; }
 
+    public AdresseServices AdresseServices { get; private set; }
+    public ShipmentServices ShipmentServices { get; private set; }
+    public TrackingNumberFactory TrackingNumberFactory { get; private set; }
+
     public ProjectApplication() {
         ApplicationConfiguration.Initialize();
         this.dbContext = new WsysDbContext();
         this.SupplierService = new SupplierService(this, this.dbContext);
         this.PurchaseOrderService = new PurchaseOrderService(this, this.dbContext);
+        this.AdresseServices = new AdresseServices(this,this.dbContext);
+        this.ShipmentServices = new ShipmentServices(this,this.dbContext);
         this.mainMenu = new MainMenu(this);
     }
 

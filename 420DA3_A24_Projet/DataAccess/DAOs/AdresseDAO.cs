@@ -59,7 +59,7 @@ internal class AdresseDAO {
     /// <param name="adresse"></param>
     /// <returns></returns>
     public Adresse Create(Adresse adresse) {
-        _= this.context.Adresses.Add(adresse);
+        _ = this.context.Adresses.Add(adresse);
         _ = this.context.SaveChanges();
         return adresse;
     }
@@ -73,7 +73,7 @@ internal class AdresseDAO {
 
     public Adresse Update(Adresse adresse) {
         adresse.DateModified = DateTime.Now;
-        _= this.context.Adresses.Update(adresse);
+        _ = this.context.Adresses.Update(adresse);
         _ = this.context.SaveChanges();
         return adresse;
     }
@@ -98,4 +98,47 @@ internal class AdresseDAO {
     }
 
 
+    /// <summary>
+    /// Methode de recherche pour l'adresse
+    /// </summary>
+    /// <param name="criterion"></param>
+    /// <param name="includeDeteded"></param>
+    /// <returns></returns>
+    public List<Adresse> Search(string criterion, bool includeDeteded = false) {
+
+        return this.context.Adresses
+            .Where(adresse => (
+               adresse.Id.ToString().Contains(criterion)
+               || adresse.AdressTypes.ToString().Contains(criterion)
+            ) && (includeDeteded || adresse.DateDelete == null))
+            .Include(shipment => shipment.OwnerShipOrder)
+            .Include(shipment => shipment.OwnerWarehouse)
+            .ToList();
+    }
+
+
+    /// <summary>
+    /// le get by Warehouse
+    /// </summary>
+    /// <param name="OwnerWarehouse"></param>
+    /// <param name="includeDeleted"></param>
+    /// <returns></returns>
+    public Adresse? GetByWarehouse(Warehouse OwnerWarehouse, bool includeDeleted = false) {
+        return this.context.Adresses
+            .Where(ownerWarehouse => ownerWarehouse.OwnerWarehouse == OwnerWarehouse && (includeDeleted || ownerWarehouse.DateDelete == null))
+            .SingleOrDefault();
+    }
+
+
+    /// <summary>
+    /// le get by ShipOrder
+    /// </summary>
+    /// <param name="OwnerShipOrder"></param>
+    /// <param name="includeDeleted"></param>
+    /// <returns></returns>
+    public Adresse? GetByShipOrder(ShippingOrder OwnerShipOrder, bool includeDeleted = false) {
+       return this.context.Adresses
+            .Where(ownerShipOrder => ownerShipOrder.OwnerShipOrder == OwnerShipOrder && (includeDeleted || ownerShipOrder.DateDelete == null))
+            .SingleOrDefault();
+    }
 }

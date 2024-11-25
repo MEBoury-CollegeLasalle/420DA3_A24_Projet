@@ -80,38 +80,5 @@ internal class ShipmentDAO {
         _ = this.context.SaveChanges();
         return shipment;
     }
-
-
-    /// <summary>
-    /// Methode Update
-    /// </summary>
-    /// <param name="shipment"></param>
-    /// <returns></returns>
-    public Shipment Update(Shipment shipment) {
-
-        shipment.DateModified = DateTime.Now;
-        _= this.context.Shipments.Update(shipment);
-        _= this.context.SaveChanges();
-        return shipment;
-    }
-
-
-    /// <summary>
-    /// Methode Delete
-    /// </summary>
-    /// <param name="shipment"></param>
-    /// <param name="softDeletes"></param>
-    /// <returns></returns>
-    public Shipment  Delete(Shipment shipment, bool softDeletes = true) {
-
-        if (softDeletes) {
-            shipment.DateDelete = DateTime.Now;
-            _ = this.context.Shipments.Update(shipment);
-        } else {
-            _= this.context.Shipments.Remove(shipment);
-        }
-        _ = this.context.SaveChanges();
-        return shipment;
-    } 
-
+  
 }

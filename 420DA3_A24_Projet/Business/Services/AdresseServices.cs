@@ -1,6 +1,7 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.DataAccess.Contexts;
 using _420DA3_A24_Projet.DataAccess.DAOs;
+using _420DA3_A24_Projet.Presentation.Views;
 using Project_Utilities.Enums;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,11 @@ using System.Threading.Tasks;
 namespace _420DA3_A24_Projet.Business.Services;
 internal class AdresseServices {
     private readonly AdresseDAO dao;
+    private readonly AdresseView view;
 
-    public AdresseServices(WsysDbContext context) {
+    public AdresseServices(ProjectApplication parentApp, WsysDbContext context) {
         this.dao = new AdresseDAO(context);
+        this.view = new AdresseView(parentApp);
     }
 
 
@@ -53,8 +56,8 @@ internal class AdresseServices {
     /// <param name="adresse"></param>
     /// <param name="softDelete"></param>
     /// <returns></returns>
-    public Adresse DeleteAdresse(Adresse adresse, bool softDelete) {
-        return this.dao.Delete(adresse,softDelete);
+    public Adresse DeleteAdresse(Adresse adresse, bool softDeleted) {
+        return this.dao.Delete(adresse,softDeleted);
     }
     /// <summary>
     /// 

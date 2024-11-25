@@ -12,6 +12,7 @@ namespace _420DA3_A24_Projet.Business.Domain
 
 
         public const int AdresseMaxLength = 64;
+        public const int AdresseMinLength = 4;
         public const int CivicNumberMaxLength = 6;
         public const int CivicNumberMinLength = 1;
         public const int StreeMaxLength = 128;
